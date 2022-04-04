@@ -19,6 +19,7 @@ export default function CategoriesDropdownMenu() {
           <Menu {...bindMenu(popupState)}>
             {categories.map((category) => (
               <MenuItem
+                key={category.id}
                 onClick={() => {
                   navigate(`home/${category.name}`);
                   popupState.close();

@@ -1,14 +1,16 @@
 import './SignIn.css';
 import { TextField, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useStore } from '../../store';
 function SignIn() {
+  const signIn = useStore((store) => store.signIn);
+
   return (
     <div className='sign-in'>
       <h2>Sign In</h2>
       <form
-        onSubmit={(e) => {
+        onSubmit={(e: any) => {
           e.preventDefault();
-          const formEl = e.target;
+          signIn(e.target.username.value, e.target.password.value);
         }}
       >
         <TextField
