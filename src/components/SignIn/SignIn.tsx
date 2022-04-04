@@ -11,6 +11,7 @@ function SignIn() {
         onSubmit={(e: any) => {
           e.preventDefault();
           signIn(e.target.username.value, e.target.password.value);
+          e.target.reset();
         }}
       >
         <TextField

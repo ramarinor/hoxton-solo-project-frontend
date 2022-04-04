@@ -6,6 +6,13 @@ type Store = {
   resetModalMessage: () => void;
   loggedInUser: User | null;
   signIn: (username: string, password: string) => void;
+  signUp: (
+    firstName: string,
+    lastName: string,
+    username: string,
+    password: string,
+    image: string
+  ) => void;
   signOut: () => void;
   validate: () => void;
 };
@@ -35,6 +42,30 @@ export const useStore = create<Store>((set, get) => ({
           set({ loggedInUser: data.user });
         }
       }),
+  signUp: (
+    firstName: string,
+    lastName: string,
+    username: string,
+    password: string,
+    image: string
+  ) => {
+    fetch('http://localhost:4000/sign-up', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ firstName, lastName, username, password, image })
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.error) {
+          set({ modalMessage: data.error });
+        } else {
+          localStorage.token = data.token;
+          set({ loggedInUser: data.user });
+        }
+      });
+  },
   signOut: () => {
     localStorage.removeItem('token');
     set({ loggedInUser: null });

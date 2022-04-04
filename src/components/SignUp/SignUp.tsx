@@ -1,13 +1,23 @@
 import './SignUp.css';
 import { TextField, Button } from '@mui/material';
+import { useStore } from '../../store';
 
 function SignUp() {
+  const signUp = useStore((store) => store.signUp);
   return (
     <div className='sign-up'>
       <h2>Sign Up</h2>
       <form
-        onSubmit={(e) => {
+        onSubmit={(e: any) => {
           e.preventDefault();
+          signUp(
+            e.target.firstName.value,
+            e.target.lastName.value,
+            e.target.username.value,
+            e.target.password.value,
+            e.target.image.value
+          );
+          e.target.reset();
         }}
       >
         <TextField
