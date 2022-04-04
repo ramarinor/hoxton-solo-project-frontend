@@ -1,7 +1,8 @@
 .header {
   background-color: #c60800;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-auto-flow: column;
+  justify-content: space-between;
   padding: 1rem;
 }
 .header a {

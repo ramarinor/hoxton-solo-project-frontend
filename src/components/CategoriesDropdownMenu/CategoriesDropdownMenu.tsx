@@ -20,7 +20,7 @@ export default function CategoriesDropdownMenu() {
             {categories.map((category) => (
               <MenuItem
                 onClick={() => {
-                  navigate(`category/${category.name}`);
+                  navigate(`home/${category.name}`);
                   popupState.close();
                 }}
               >
