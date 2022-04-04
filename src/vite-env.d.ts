@@ -11,3 +11,13 @@ type User = {
   image: String;
   roleId: number;
 };
+
+type Article = {
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  createdAt: string;
+  userId: number;
+  categoryId: number;
+};
