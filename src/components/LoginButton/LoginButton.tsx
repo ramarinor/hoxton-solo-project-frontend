@@ -9,7 +9,7 @@ export default function LogInButton() {
       <Button
         variant='contained'
         onClick={() => {
-          navigate('sign-in');
+          navigate('login');
         }}
       >
         LOG IN

@@ -4,7 +4,8 @@ import './App.css';
 import Header from './components/Header/Header';
 import CategoryPage from './pages/CategoryPage';
 import Home from './pages/Home';
-import SignIn from './pages/SignIn';
+import Login from './pages/Login';
+
 import { useStore } from './store';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
         <Route index element={<Navigate replace to={'/home'} />} />
         <Route path='/home' element={<Home />} />
         <Route path='/home/:category' element={<CategoryPage />} />
-        <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
     </div>
   );

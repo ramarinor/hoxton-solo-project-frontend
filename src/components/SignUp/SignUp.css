@@ -1,0 +1,11 @@
+.sign-up {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  border-right: 2px solid rgba(92, 92, 92, 0.2);
+}
+form {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+}

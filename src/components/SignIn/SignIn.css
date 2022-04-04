@@ -1,0 +1,10 @@
+.sign-in {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+}
+form {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+}
