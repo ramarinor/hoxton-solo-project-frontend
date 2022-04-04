@@ -1,0 +1,22 @@
+.header {
+  background-color: #c60800;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  padding: 1rem;
+}
+.header a {
+  color: unset;
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.header h1 {
+  font-family: 'Rubik Glitch', cursive;
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.header .dropdown-wrapper {
+  display: grid;
+  align-items: center;
+}
