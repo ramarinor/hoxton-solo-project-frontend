@@ -28,7 +28,7 @@ export default function AccountDropdownMenu({ loggedInUser }: Props) {
               Log Out
             </MenuItem>
             {loggedInUser.roleId <= 2 && (
-              <>
+              <div>
                 <MenuItem
                   onClick={() => {
                     popupState.close();
@@ -45,7 +45,7 @@ export default function AccountDropdownMenu({ loggedInUser }: Props) {
                 >
                   Create an Article
                 </MenuItem>
-              </>
+              </div>
             )}
             {loggedInUser.roleId === 1 && (
               <MenuItem

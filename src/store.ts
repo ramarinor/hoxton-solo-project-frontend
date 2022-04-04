@@ -3,10 +3,11 @@ type Store = {
   categories: Category[];
   fetchCategories: () => void;
   modalMessage: string;
-  setModalMessage: (message: string) => void;
+  resetModalMessage: () => void;
   loggedInUser: User | null;
   signIn: (username: string, password: string) => void;
   signOut: () => void;
+  validate: () => void;
 };
 export const useStore = create<Store>((set, get) => ({
   categories: [],
@@ -15,7 +16,7 @@ export const useStore = create<Store>((set, get) => ({
       .then((resp) => resp.json())
       .then((categories) => set({ categories })),
   modalMessage: '',
-  setModalMessage: (message) => set({ modalMessage: message }),
+  resetModalMessage: () => set({ modalMessage: '' }),
   loggedInUser: null,
   signIn: (username: string, password: string) =>
     fetch('http://localhost:4000/sign-in', {
@@ -27,7 +28,6 @@ export const useStore = create<Store>((set, get) => ({
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
         if (data.error) {
           set({ modalMessage: data.error });
         } else {
@@ -38,5 +38,22 @@ export const useStore = create<Store>((set, get) => ({
   signOut: () => {
     localStorage.removeItem('token');
     set({ loggedInUser: null });
+  },
+  validate: () => {
+    if (localStorage.token) {
+      fetch('http://localhost:4000/validate', {
+        headers: {
+          Authorization: localStorage.token
+        }
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          if (data.error) {
+            set({ modalMessage: data.error });
+          } else {
+            set({ loggedInUser: data.user });
+          }
+        });
+    }
   }
 }));
