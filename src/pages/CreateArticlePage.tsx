@@ -3,10 +3,43 @@ import { useStore } from '../store';
 
 function CreateArticlePage() {
   const cateogories = useStore((store) => store.categories);
+  const setModalMessage = useStore((store) => store.setModalMessage);
+  function createArticle(
+    title: string,
+    image: string,
+    content: string,
+    categoryId: number
+  ) {
+    fetch(`http://localhost:4000/articles`, {
+      method: 'POST',
+      headers: {
+        Authorization: localStorage.token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ title, image, content, categoryId })
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.error) setModalMessage(data.error);
+        else setModalMessage(data.message);
+      });
+  }
   return (
     <div className='main'>
       <h2>Create an Article</h2>
-      <form className='article-form'>
+      <form
+        className='article-form'
+        onSubmit={(e: any) => {
+          e.preventDefault();
+          createArticle(
+            e.target.title.value,
+            e.target.image.value,
+            e.target.content.value,
+            Number(e.target.category.value)
+          );
+          e.target.reset();
+        }}
+      >
         <TextField
           fullWidth
           name='title'
@@ -49,7 +82,7 @@ function CreateArticlePage() {
           ))}
         </Select>
 
-        <Button type='submit' variant='contained' onClick={() => {}}>
+        <Button type='submit' variant='contained'>
           SUBMIT
         </Button>
       </form>
