@@ -9,28 +9,31 @@
   grid-template-columns: 300px 1fr;
   position: relative;
 }
-.article-image {
+.article .article-image {
   display: grid;
   align-items: center;
 }
 
-.article-title-and-content {
+.article .article-title-and-content {
   display: grid;
   gap: 0.5rem;
+  font-family: 'Newsreader', serif;
 }
-.article-title {
+.article .article-title {
   width: 30ch;
   height: 1rem;
   white-space: nowrap;
   overflow: hidden;
   text-transform: uppercase;
   text-overflow: ellipsis;
+  font-weight: bold;
 }
-.article-content {
+.article .article-content {
+  font-weight: 200;
   position: relative;
 }
 
-.article-link {
+.article .article-link {
   position: absolute;
   font-size: 0.7rem;
   bottom: -1rem;
@@ -39,7 +42,7 @@
   text-decoration: none;
 }
 
-.article-buttons {
+.article .article-buttons {
   position: absolute;
   bottom: 5px;
   right: 5px;
