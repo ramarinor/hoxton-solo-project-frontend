@@ -4,6 +4,7 @@ type Store = {
   fetchCategories: () => void;
   modalMessage: string;
   resetModalMessage: () => void;
+  setModalMessage: (modalMessage: string) => void;
   loggedInUser: User | null;
   signIn: (username: string, password: string) => void;
   signUp: (
@@ -24,6 +25,7 @@ export const useStore = create<Store>((set, get) => ({
       .then((categories) => set({ categories })),
   modalMessage: '',
   resetModalMessage: () => set({ modalMessage: '' }),
+  setModalMessage: (modalMessage: string) => set({ modalMessage }),
   loggedInUser: null,
   signIn: (username: string, password: string) =>
     fetch('http://localhost:4000/sign-in', {

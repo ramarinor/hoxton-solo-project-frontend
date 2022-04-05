@@ -27,12 +27,6 @@
 .article-content {
   position: relative;
 }
-.article-date-time {
-  position: absolute;
-  font-size: 0.7rem;
-  bottom: 0.2rem;
-  right: 0.3rem;
-}
 
 .article-link {
   position: absolute;
@@ -41,4 +35,13 @@
   left: 0;
   color: rgb(5, 38, 66);
   text-decoration: none;
+}
+
+.article-buttons {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0.5rem;
 }

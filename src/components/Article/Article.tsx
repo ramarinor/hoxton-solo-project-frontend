@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useStore } from '../../store';
 import './Article.css';
 type Props = {
   article: Article;
@@ -6,6 +7,31 @@ type Props = {
   setArticles: React.Dispatch<React.SetStateAction<Article[]>>;
 };
 function Article({ article, articles, setArticles }: Props) {
+  const loggedInUser = useStore((store) => store.loggedInUser);
+  const setModalMesssage = useStore((store) => store.setModalMessage);
+  const navigate = useNavigate();
+
+  function deleteArticle(id: number) {
+    fetch(`http://localhost:4000/articles/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: localStorage.token
+      }
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.error) setModalMesssage(data.error);
+        else {
+          setModalMesssage(data.message);
+          let updatedArticles: Article[] = JSON.parse(JSON.stringify(articles));
+          updatedArticles = updatedArticles.filter(
+            (article) => article.id !== id
+          );
+          setArticles(updatedArticles);
+        }
+      });
+  }
+
   return (
     <div className='article'>
       <div className='article-image'>
@@ -20,9 +46,25 @@ function Article({ article, articles, setArticles }: Props) {
           </Link>
         </p>
       </div>
-      <span className='article-date-time'>
-        {article.createdAt.slice(0, 19)}
-      </span>
+      {((loggedInUser?.id === article.userId && loggedInUser?.roleId === 2) ||
+        loggedInUser?.roleId === 1) && (
+        <div className='article-buttons'>
+          <button
+            className='article-button'
+            onClick={() => deleteArticle(article.id)}
+          >
+            <span className='material-icons'>delete</span>
+          </button>
+          <button
+            className='article-button'
+            onClick={() => {
+              navigate(`/articles/${article.id}/edit`);
+            }}
+          >
+            <span className='material-icons'>edit</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 }
