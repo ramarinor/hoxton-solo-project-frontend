@@ -2,7 +2,8 @@
   padding: 1rem 1rem 1.3rem;
   margin: 1rem 0;
   border-radius: 0.5rem;
-  background-color: rgba(122, 122, 122, 0.5);
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid black;
   display: grid;
   gap: 0.5rem;
   grid-template-columns: 300px 1fr;
@@ -22,6 +23,7 @@
   height: 1rem;
   white-space: nowrap;
   overflow: hidden;
+  text-transform: uppercase;
   text-overflow: ellipsis;
 }
 .article-content {
@@ -33,7 +35,7 @@
   font-size: 0.7rem;
   bottom: -1rem;
   left: 0;
-  color: rgb(5, 38, 66);
+  color: rgb(9, 81, 144);
   text-decoration: none;
 }
 
