@@ -1,9 +1,12 @@
 import { Button, MenuItem, Select, TextField } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
 
 function CreateArticlePage() {
   const cateogories = useStore((store) => store.categories);
   const setModalMessage = useStore((store) => store.setModalMessage);
+  const loggedInUser = useStore((store) => store.loggedInUser);
+  const navigate = useNavigate();
   function createArticle(
     title: string,
     image: string,
@@ -37,7 +40,7 @@ function CreateArticlePage() {
             e.target.content.value,
             Number(e.target.category.value)
           );
-          e.target.reset();
+          navigate(`/users/${loggedInUser?.username}`);
         }}
       >
         <TextField
