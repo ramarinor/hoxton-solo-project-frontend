@@ -6,6 +6,7 @@
   grid-template-columns: 150px 1fr;
   gap: 1rem;
   background-color: rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .comment img {
@@ -24,4 +25,12 @@
 }
 .comment .comment-user-image {
   padding: 1rem;
+}
+.comment .comment-buttons {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 0.5rem;
 }

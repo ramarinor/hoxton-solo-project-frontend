@@ -35,7 +35,7 @@ function Comments() {
   return (
     <div className='comments'>
       {comments.map((comment) => (
-        <Comment comment={comment} key={comment.id} />
+        <Comment comment={comment} setComments={setComments} key={comment.id} />
       ))}
       <form
         className='comment-form'
