@@ -21,7 +21,7 @@ function Comments() {
           </div>
           <div className='comment-info'>
             <div className='comment-username-and-time'>
-              <span className='comment-username'>{comment.user.username}</span>
+              <b className='comment-username'>@{comment.user.username}</b>
               <span className='comment-time'>
                 {comment.createdAt.slice(0, 19).replace('T', ' ')}
               </span>
