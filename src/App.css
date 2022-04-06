@@ -19,6 +19,7 @@ img {
   justify-items: center;
   gap: 1rem;
   padding: 1rem 3rem;
+  height: 100%;
 }
 .article-form {
   display: grid;

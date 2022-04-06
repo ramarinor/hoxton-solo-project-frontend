@@ -23,6 +23,7 @@ export default function AccountDropdownMenu({ loggedInUser }: Props) {
               onClick={() => {
                 popupState.close();
                 signOut();
+                navigate('/login');
               }}
             >
               Log Out
