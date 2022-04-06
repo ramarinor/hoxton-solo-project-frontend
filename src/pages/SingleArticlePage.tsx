@@ -24,7 +24,9 @@ function SingleArticlePage() {
           <span className='articla-user-name'>
             {article.user.firstName} {article.user.lastName}
           </span>
-          <span className='article-time'>{article.createdAt.slice(0, 19)}</span>
+          <span className='article-time'>
+            {article.createdAt.slice(0, 19).replace('T', ' ')}
+          </span>
         </div>
       </div>
       <div className='article-image'>
