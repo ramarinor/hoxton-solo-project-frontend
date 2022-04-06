@@ -1,5 +1,5 @@
 .article {
-  padding: 1rem 1rem 1.3rem;
+  padding: 1.5rem 2rem 2rem;
   margin: 1rem 0;
   border-radius: 0.5rem;
   background-color: rgba(255, 255, 255, 0.2);
@@ -29,6 +29,7 @@
   font-weight: bold;
 }
 .article .article-content {
+  padding: 1rem;
   font-weight: 200;
   position: relative;
 }
@@ -37,15 +38,15 @@
   position: absolute;
   font-size: 0.7rem;
   bottom: -1rem;
-  left: 0;
-  color: rgb(9, 81, 144);
+  left: 1rem;
+  color: rgb(77, 159, 232);
   text-decoration: none;
 }
 
 .article .article-buttons {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  bottom: 15px;
+  right: 15px;
   display: grid;
   grid-auto-flow: column;
   gap: 0.5rem;

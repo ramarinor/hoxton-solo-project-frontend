@@ -1,6 +1,7 @@
 import './SingleArticlePage.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Comments from '../components/Comments/Comments';
 
 function SingleArticlePage() {
   const [article, setArticle] = useState<ArticleWithUser | null>(null);
@@ -33,6 +34,7 @@ function SingleArticlePage() {
         <img src={article.image} />
       </div>
       <div className='article-content'>{article.content}</div>
+      <Comments />
     </div>
   );
 }

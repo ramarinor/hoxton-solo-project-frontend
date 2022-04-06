@@ -32,3 +32,12 @@ type ArticleWithUser = {
   categoryId: number;
   user: User;
 };
+
+type ArticleComment = {
+  articleId: number;
+  content: string;
+  createdAt: string;
+  id: number;
+  user: User;
+  userId: number;
+};

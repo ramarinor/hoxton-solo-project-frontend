@@ -28,7 +28,10 @@ function CreateArticlePage() {
       });
   }
   return (
-    <div className='main'>
+    <div
+      className='main'
+      style={{ backgroundColor: '#dbdbdb', color: 'black' }}
+    >
       <h2>Create an Article</h2>
       <form
         className='article-form'
