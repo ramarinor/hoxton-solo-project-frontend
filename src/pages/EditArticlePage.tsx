@@ -35,10 +35,7 @@ function EditArticlePage() {
   }
   if (article === null) return <div className='main'>Loading...</div>;
   return (
-    <div
-      className='main'
-      style={{ backgroundColor: '#dbdbdb', color: 'black' }}
-    >
+    <div className='main'>
       <h2>EDIT YOUR ARTICLE</h2>
       <form
         className='article-form'

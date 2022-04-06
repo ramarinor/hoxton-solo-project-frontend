@@ -1,12 +1,5 @@
 function UsersAdminPage() {
-  return (
-    <div
-      className='main'
-      style={{ backgroundColor: '#dbdbdb', color: 'black' }}
-    >
-      UsersAdminPage
-    </div>
-  );
+  return <div className='main'>UsersAdminPage</div>;
 }
 
 export default UsersAdminPage;

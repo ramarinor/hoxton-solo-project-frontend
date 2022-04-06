@@ -5,8 +5,7 @@
 }
 
 .App {
-  background-color: black;
-  color: white;
+  background-color: rgb(227, 227, 227);
   min-height: 100vh;
 }
 img {

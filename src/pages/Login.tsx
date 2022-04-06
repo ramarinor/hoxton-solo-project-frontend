@@ -14,10 +14,7 @@ function Login() {
     }
   }, [loggedInUser]);
   return (
-    <div
-      className='login'
-      style={{ backgroundColor: '#dbdbdb', color: 'black' }}
-    >
+    <div className='login'>
       <SignUp />
       <SignIn />
     </div>
