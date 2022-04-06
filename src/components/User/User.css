@@ -1,0 +1,11 @@
+.user {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 150px 200px 200px;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.user img {
+  border-radius: 50%;
+}
