@@ -2,6 +2,8 @@ import './SingleArticlePage.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Comments from '../components/Comments/Comments';
+import { Button, TextField } from '@mui/material';
+import { useStore } from '../store';
 
 function SingleArticlePage() {
   const [article, setArticle] = useState<ArticleWithUser | null>(null);

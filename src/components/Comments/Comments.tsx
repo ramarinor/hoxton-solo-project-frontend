@@ -1,10 +1,30 @@
+import { Button, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useStore } from '../../store';
+import Comment from '../Comment/Comment';
 import './Comments.css';
 
 function Comments() {
   const [comments, setComments] = useState<ArticleComment[]>([]);
   const params = useParams();
+  const setModalMessage = useStore((store) => store.setModalMessage);
+
+  function addComment(content: string) {
+    fetch(`http://localhost:4000/comments`, {
+      method: 'POST',
+      headers: {
+        Authorization: localStorage.token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ content, articleId: Number(params.id) })
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.error) setModalMessage(data.error);
+        else setComments(data);
+      });
+  }
 
   useEffect(() => {
     fetch(`http://localhost:4000/comments/${params.id}`)
@@ -15,21 +35,28 @@ function Comments() {
   return (
     <div className='comments'>
       {comments.map((comment) => (
-        <div className='comment'>
-          <div className='comment-user-image'>
-            <img src={`${comment.user.image}`}></img>
-          </div>
-          <div className='comment-info'>
-            <div className='comment-username-and-time'>
-              <b className='comment-username'>@{comment.user.username}</b>
-              <span className='comment-time'>
-                {comment.createdAt.slice(0, 19).replace('T', ' ')}
-              </span>
-            </div>
-            <div className='comment-content'>{comment.content}</div>
-          </div>
-        </div>
+        <Comment comment={comment} key={comment.id} />
       ))}
+      <form
+        className='comment-form'
+        onSubmit={(e: any) => {
+          e.preventDefault();
+          addComment(e.target.content.value);
+          e.target.reset();
+        }}
+      >
+        <TextField
+          fullWidth
+          name='content'
+          rows={3}
+          label='Write your comment here...'
+          multiline
+          required
+        />
+        <Button type='submit' variant='contained'>
+          SUBMIT
+        </Button>
+      </form>
     </div>
   );
 }

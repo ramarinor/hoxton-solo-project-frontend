@@ -23,3 +23,6 @@
 .main .article-content {
   font-family: 'Newsreader', serif;
 }
+.comment-form {
+  width: 100%;
+}
