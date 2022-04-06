@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useStore } from '../store';
 
 function EditArticlePage() {
-  const [article, setArticle] = useState<Article | null>(null);
+  const [article, setArticle] = useState<ArticleWithUser | null>(null);
   const params = useParams();
   const cateogories = useStore((store) => store.categories);
   const setModalMessage = useStore((store) => store.setModalMessage);

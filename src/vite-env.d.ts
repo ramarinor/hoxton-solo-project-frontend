@@ -21,3 +21,14 @@ type Article = {
   userId: number;
   categoryId: number;
 };
+
+type ArticleWithUser = {
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  createdAt: string;
+  userId: number;
+  categoryId: number;
+  user: User;
+};
