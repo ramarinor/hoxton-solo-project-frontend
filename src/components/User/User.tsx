@@ -20,8 +20,7 @@ function User({ user }: Props) {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.error) setModalMessage(data.error);
-        else setModalMessage(data.message);
-        setRoleId(data.user.roleId);
+        else setRoleId(data.user.roleId);
       });
   }
 
