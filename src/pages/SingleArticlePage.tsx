@@ -36,7 +36,7 @@ function SingleArticlePage() {
         <img src={article.image} />
       </div>
       <div className='article-content'>{article.content}</div>
-      <Comments />
+      <Comments articleUserId={article.userId} />
     </div>
   );
 }

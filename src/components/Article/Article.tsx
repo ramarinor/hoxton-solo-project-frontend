@@ -8,7 +8,7 @@ type Props = {
 };
 function Article({ article, articles, setArticles }: Props) {
   const loggedInUser = useStore((store) => store.loggedInUser);
-  const setModalMesssage = useStore((store) => store.setModalMessage);
+  const setModalMessage = useStore((store) => store.setModalMessage);
   const navigate = useNavigate();
 
   function deleteArticle(id: number) {
@@ -20,9 +20,9 @@ function Article({ article, articles, setArticles }: Props) {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        if (data.error) setModalMesssage(data.error);
+        if (data.error) setModalMessage(data.error);
         else {
-          setModalMesssage(data.message);
+          setModalMessage(data.message);
           let updatedArticles: Article[] = JSON.parse(JSON.stringify(articles));
           updatedArticles = updatedArticles.filter(
             (article) => article.id !== id

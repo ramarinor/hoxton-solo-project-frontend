@@ -4,8 +4,10 @@ import { useParams } from 'react-router-dom';
 import { useStore } from '../../store';
 import Comment from '../Comment/Comment';
 import './Comments.css';
-
-function Comments() {
+type Props = {
+  articleUserId: number;
+};
+function Comments({ articleUserId }: Props) {
   const [comments, setComments] = useState<ArticleComment[]>([]);
   const params = useParams();
   const setModalMessage = useStore((store) => store.setModalMessage);
@@ -35,7 +37,12 @@ function Comments() {
   return (
     <div className='comments'>
       {comments.map((comment) => (
-        <Comment comment={comment} setComments={setComments} key={comment.id} />
+        <Comment
+          comment={comment}
+          setComments={setComments}
+          articleUserId={articleUserId}
+          key={comment.id}
+        />
       ))}
       <form
         className='comment-form'

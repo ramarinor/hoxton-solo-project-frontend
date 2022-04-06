@@ -5,8 +5,9 @@ import './Comment.css';
 type Props = {
   comment: ArticleComment;
   setComments: React.Dispatch<React.SetStateAction<ArticleComment[]>>;
+  articleUserId: number;
 };
-function Comment({ comment, setComments }: Props) {
+function Comment({ comment, setComments, articleUserId }: Props) {
   const loggedInUser = useStore((store) => store.loggedInUser);
   const setModalMessage = useStore((store) => store.setModalMessage);
   const [isEditing, setIsEditing] = useState(false);
@@ -19,6 +20,19 @@ function Comment({ comment, setComments }: Props) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ content })
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (data.error) setModalMessage(data.error);
+        else setComments(data);
+      });
+  }
+  function deleteComment() {
+    fetch(`http://localhost:4000/comments/${comment.id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: localStorage.token
+      }
     })
       .then((resp) => resp.json())
       .then((data) => {
@@ -64,11 +78,19 @@ function Comment({ comment, setComments }: Props) {
         </div>
         <div className='comment-content'>{comment.content}</div>
         <div className='comment-buttons'>
-          {
-            <button className='commment-button' onClick={() => {}}>
+          {(loggedInUser?.id === comment.userId ||
+            (loggedInUser?.id === articleUserId &&
+              loggedInUser?.roleId === 2) ||
+            loggedInUser?.roleId === 1) && (
+            <button
+              className='commment-button'
+              onClick={() => {
+                deleteComment();
+              }}
+            >
               <span className='material-icons'>delete</span>
             </button>
-          }
+          )}
           {loggedInUser?.id === comment.userId && (
             <button
               className='comment-button'
