@@ -24,7 +24,10 @@ function CreateArticlePage() {
       .then((resp) => resp.json())
       .then((data) => {
         if (data.error) setModalMessage(data.error);
-        else setModalMessage(data.message);
+        else {
+          setModalMessage(data.message);
+          navigate(`/users/${loggedInUser?.username}`);
+        }
       });
   }
   return (
@@ -40,7 +43,6 @@ function CreateArticlePage() {
             e.target.content.value,
             Number(e.target.category.value)
           );
-          navigate(`/users/${loggedInUser?.username}`);
         }}
       >
         <TextField
